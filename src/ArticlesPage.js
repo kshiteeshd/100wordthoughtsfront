@@ -8,7 +8,7 @@ const ArticlesPage = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/articles");
+      const response = await fetch("http://one00wordthoughts.onrender.com/api/articles");
       const data = await response.json();
 
       if (!Array.isArray(data)) {
