@@ -1,0 +1,618 @@
+$navbgcolor :rgb(213, 0, 0);
+$navtext:white;
+$bordercolor: black;
+$insetcolor: rgb(110, 0, 0);
+$outsetcolor: rgb(254, 47, 47);
+$textcolor:white;
+$bgcolor:black;
+$linkcolor:rgb(255, 85, 0);
+$clippath: polygon(
+  0px calc(100% - 14px),
+  2px calc(100% - 14px),
+  2px calc(100% - 10px),
+  4px calc(100% - 10px),
+  4px calc(100% - 6px),
+  6px calc(100% - 6px),
+  6px calc(100% - 4px),
+  10px calc(100% - 4px),
+  10px calc(100% - 2px),
+  14px calc(100% - 2px),
+  14px 100%,
+  calc(100% - 14px) 100%,
+  calc(100% - 14px) calc(100% - 2px),
+  calc(100% - 10px) calc(100% - 2px),
+  calc(100% - 10px) calc(100% - 4px),
+  calc(100% - 6px) calc(100% - 4px),
+  calc(100% - 6px) calc(100% - 6px),
+  calc(100% - 4px) calc(100% - 6px),
+  calc(100% - 4px) calc(100% - 10px),
+  calc(100% - 2px) calc(100% - 10px),
+  calc(100% - 2px) calc(100% - 14px),
+  100% calc(100% - 14px),
+  100% 14px,
+  calc(100% - 2px) 14px,
+  calc(100% - 2px) 10px,
+  calc(100% - 4px) 10px,
+  calc(100% - 4px) 6px,
+  calc(100% - 6px) 6px,
+  calc(100% - 6px) 4px,
+  calc(100% - 10px) 4px,
+  calc(100% - 10px) 2px,
+  calc(100% - 14px) 2px,
+  calc(100% - 14px) 0px,
+  14px 0px,
+  14px 2px,
+  10px 2px,
+  10px 4px,
+  6px 4px,
+  6px 6px,
+  4px 6px,
+  4px 10px,
+  2px 10px,
+  2px 14px,
+  0px 14px
+);
+
+@font-face {
+  font-family: "Geist";
+  src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
+}
+
+
+
+*{
+  font-family: 'Press Start 2P',serif;
+  margin: 0px;
+ 
+  
+}
+
+.App{
+  background-color: rgb(33, 33, 33);
+  background-image:
+    radial-gradient(transparent 0.6em, rgb(55, 55, 55) 0.6em),
+    conic-gradient(at 1em 1em, transparent 270deg, rgba(119, 80, 41, 0.2) 270deg),
+    conic-gradient(at 1em 1em, transparent 270deg, rgba(136, 93, 50, 0.267) 270deg),
+    conic-gradient(at 1em 1em, transparent 270deg, rgba(76, 53, 30, 0.333) 270deg),
+    conic-gradient(at 1em 1em, transparent 270deg, rgba(72, 58, 44, 0.4) 270deg);
+  background-size: 1em 1em, 4em 4em, 4em 4em, 4em 4em, 4em 4em;
+  animation: bpx 12s infinite, bpy 12s -3.75s infinite;
+  
+  @each $xy in ('x', 'y') {
+    @keyframes bp#{$xy} {
+      0%, 7.5%, 100% { background-position-#{$xy}: 0, 0, 1em, 2em, 3em; }
+      12.5%, 20% { background-position-#{$xy}: 0, 1em, 0, 3em, 2em; }
+      25%, 32.5% { background-position-#{$xy}: 0, -1em, -2em, 5em, 4em; }
+      37.5%, 45% { background-position-#{$xy}: 0, 1em, -4em, 7em, 2em; }
+      50%, 57.5% { background-position-#{$xy}: 0, -2em, -5em, 8em, 5em; }
+      62.5%, 70% { background-position-#{$xy}: 0, -3em, -4em, 7em, 6em; }
+      75%, 82.5% { background-position-#{$xy}: 0, -1em, -2em, 5em, 4em; }
+      87.5%, 95% { background-position-#{$xy}: 0, -3em, 0, 3em, 6em; }
+    }
+  }
+}
+
+
+
+
+// -------------------Header Files---------------------
+
+/* Typewriter effect (word by word) */ 
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  font-size: 2rem;
+  color: $textcolor;
+  padding: 2.8rem;
+  --s: 60px; /* control the size */
+  --c1: #252525;
+  --c2: #000000;
+  
+  --_s: calc(2*var(--s)) calc(2*var(--s));
+  --_g: var(--_s) conic-gradient(at 40% 40%,#0000 75%,var(--c1) 0);
+  --_p: var(--_s) conic-gradient(at 20% 20%,#0000 75%,var(--c2) 0);
+  background:
+    calc( .9*var(--s)) calc( .9*var(--s))/var(--_p),
+    calc(-.1*var(--s)) calc(-.1*var(--s))/var(--_p),
+    calc( .7*var(--s)) calc( .7*var(--s))/var(--_g),
+    calc(-.3*var(--s)) calc(-.3*var(--s))/var(--_g),
+    conic-gradient(from 90deg at 10% 10%,var(--c2) 25%,var(--c1) 0) 
+     0 0/var(--s) var(--s);
+  animation: m 3s infinite; /* Background color for better contrast */
+}
+@keyframes m {
+  0% {
+   background-position: 
+    calc( .9*var(--s)) calc( .9*var(--s)),
+    calc(-.1*var(--s)) calc(-.1*var(--s)),
+    calc( .7*var(--s)) calc( .7*var(--s)),
+    calc(-.3*var(--s)) calc(-.3*var(--s)),0 0
+  }
+  25% {
+   background-position: 
+    calc(1.9*var(--s)) calc( .9*var(--s)),
+    calc(-1.1*var(--s)) calc(-.1*var(--s)),
+    calc(1.7*var(--s)) calc( .7*var(--s)),
+    calc(-1.3*var(--s)) calc(-.3*var(--s)),0 0
+  }
+  50% {
+   background-position: 
+    calc(1.9*var(--s)) calc(-.1*var(--s)),
+    calc(-1.1*var(--s)) calc( .9*var(--s)),
+    calc(1.7*var(--s)) calc(-.3*var(--s)),
+    calc(-1.3*var(--s)) calc( .7*var(--s)),0 0
+  }
+  75% {
+   background-position: 
+    calc(2.9*var(--s)) calc(-.1*var(--s)),
+    calc(-2.1*var(--s)) calc( .9*var(--s)),
+    calc(2.7*var(--s)) calc(-.3*var(--s)),
+    calc(-2.3*var(--s)) calc( .7*var(--s)),0 0
+  }
+  100% {
+   background-position: 
+    calc(2.9*var(--s)) calc(-1.1*var(--s)),
+    calc(-2.1*var(--s)) calc(1.9*var(--s)),
+    calc(2.7*var(--s)) calc(-1.3*var(--s)),
+    calc(-2.3*var(--s)) calc(1.7*var(--s)),0 0
+  }
+}
+
+
+.anim-typewriter{
+  animation: typewriter 4s steps(18) 1s 1 normal both , blinkTextCursor 500ms steps(18) infinite normal;
+}
+
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 100%;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
+/* -------------------APP Body-----------------------------------*/
+.main{
+    margin: 0px 4rem;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    background-color: white;       
+}
+
+
+
+/* ----------------NAVBAR---------------------------- */
+
+
+.nav {
+  font-family: 'Press Start 2P',serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  padding: 0.5rem 0.5rem;
+  background: black;
+  
+  
+}
+
+.nav_content{
+  display: flex;  
+  flex: 1; 
+  align-items: center;
+  justify-content: center;  
+  list-style: none;
+  background-color: $bordercolor;
+  clip-path: polygon(
+    0px calc(100% - 14px),
+    2px calc(100% - 14px),
+    2px calc(100% - 10px),
+    4px calc(100% - 10px),
+    4px calc(100% - 6px),
+    6px calc(100% - 6px),
+    6px calc(100% - 4px),
+    10px calc(100% - 4px),
+    10px calc(100% - 2px),
+    14px calc(100% - 2px),
+    14px 100%,
+    calc(100% - 14px) 100%,
+    calc(100% - 14px) calc(100% - 2px),
+    calc(100% - 10px) calc(100% - 2px),
+    calc(100% - 10px) calc(100% - 4px),
+    calc(100% - 6px) calc(100% - 4px),
+    calc(100% - 6px) calc(100% - 6px),
+    calc(100% - 4px) calc(100% - 6px),
+    calc(100% - 4px) calc(100% - 10px),
+    calc(100% - 2px) calc(100% - 10px),
+    calc(100% - 2px) calc(100% - 14px),
+    100% calc(100% - 14px),
+    100% 14px,
+    calc(100% - 2px) 14px,
+    calc(100% - 2px) 10px,
+    calc(100% - 4px) 10px,
+    calc(100% - 4px) 6px,
+    calc(100% - 6px) 6px,
+    calc(100% - 6px) 4px,
+    calc(100% - 10px) 4px,
+    calc(100% - 10px) 2px,
+    calc(100% - 14px) 2px,
+    calc(100% - 14px) 0px,
+    14px 0px,
+    14px 2px,
+    10px 2px,
+    10px 4px,
+    6px 4px,
+    6px 6px,
+    4px 6px,
+    4px 10px,
+    2px 10px,
+    2px 14px,
+    0px 14px
+  );
+}
+
+.nav_item{
+  display: flex;
+  flex: 1 1 var(--nav__item-flex-basis);
+  padding: 1rem;
+  margin-left: .2rem;
+  margin-right: .2rem;
+  text-align: center;
+  text-decoration: none;  
+}
+
+.nav_link {
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Default color for links */
+}
+
+.nav_link:hover {
+  color: $linkcolor; /* Optional: Change color on hover */
+}
+
+/* Active link styling */
+.nav_link.active {
+  color: $linkcolor; /* Active link color */
+  font-weight: bold; /* Optional: Makes the active link bold */
+}
+
+
+
+// -------------------------List--------------------------
+
+li {
+  list-style-type: none;
+}
+
+a{
+  color: $textcolor;
+  text-decoration: none;
+}
+
+a:hover{
+  color: $navbgcolor;
+  text-decoration: none;
+}
+
+.active-link {
+  color: #ff2600; /* Highlight color for active link, you can change it */
+  font-weight: bold; /* Optional: makes the active link bolder */
+}
+
+// -----------------Landing Page------------------
+
+.heading{
+  padding: 4rem;
+  font-size: 2rem;
+}
+
+.section{
+  padding: 2rem;
+  margin: 1rem 2rem;
+}
+
+
+
+.secborder{
+  border: .1rem solid black;
+}
+.secwidth{
+  margin: 1rem 3rem;
+}
+
+h3{
+  padding: 1rem;
+  line-height: 1.8rem;
+}
+
+h4{
+  background-color: $bgcolor;
+  color: $linkcolor;
+  padding: .5rem;
+}
+
+.paracontent{
+  padding: 1rem;
+  font-family: 'Courier', Courier, monospace;
+  font-size: larger;
+  font-weight: bolder;
+}
+.buttonsec{
+  display: flex;
+  
+  flex-direction: row;
+}
+
+.landingbtn{
+  padding: .4rem .1rem;
+  margin: .4rem;
+  // clip-path: $clippath;
+  font-size: larger;
+  border: .1rem solid black;
+  box-shadow: .2rem .2rem;
+  
+}
+
+.landingbtn:hover{
+  padding: .4rem;
+  margin: .4rem;
+  // clip-path: $clippath;
+  font-size: larger;
+  border: .1rem solid rgb(0, 0, 0);
+  transform: translate(.2rem ,.2rem);
+  color: white;
+  background-color: $linkcolor;
+  
+}
+
+// -------------Footer-----------
+
+.footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $textcolor;
+  background-color: $bgcolor;
+  padding: .8rem;
+}
+
+//------------------ArticlePage-------------
+.main-Article{
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  background-color: $bgcolor;
+
+}
+
+.wc{
+  color: $textcolor;
+}
+
+.article-box{
+  margin: inherit;
+  border: .2rem solid black;
+}
+
+.article-card{
+  
+  border: .1rem solid black;
+  box-shadow: .2rem .2rem rgb(118, 118, 118);
+  margin: 2rem 3rem;
+  height: auto;
+  
+}
+
+.timestamp{
+  font-size: .5rem;
+  padding: 1rem;
+}
+
+.artsection{
+  padding: 2rem;
+  margin: 1rem 1rem;
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;  
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: $textcolor;
+  clip-path: polygon(
+    0px calc(100% - 28px),
+    4px calc(100% - 28px),
+    4px calc(100% - 20px),
+    8px calc(100% - 20px),
+    8px calc(100% - 12px),
+    12px calc(100% - 12px),
+    12px calc(100% - 8px),
+    20px calc(100% - 8px),
+    20px calc(100% - 4px),
+    28px calc(100% - 4px),
+    28px 100%,
+    calc(100% - 28px) 100%,
+    calc(100% - 28px) calc(100% - 4px),
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 20px) calc(100% - 8px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 8px) calc(100% - 20px),
+    calc(100% - 4px) calc(100% - 20px),
+    calc(100% - 4px) calc(100% - 28px),
+    100% calc(100% - 28px),
+    100% 28px,
+    calc(100% - 4px) 28px,
+    calc(100% - 4px) 20px,
+    calc(100% - 8px) 20px,
+    calc(100% - 8px) 12px,
+    calc(100% - 12px) 12px,
+    calc(100% - 12px) 8px,
+    calc(100% - 20px) 8px,
+    calc(100% - 20px) 4px,
+    calc(100% - 28px) 4px,
+    calc(100% - 28px) 0px,
+    28px 0px,
+    28px 4px,
+    20px 4px,
+    20px 8px,
+    12px 8px,
+    12px 12px,
+    8px 12px,
+    8px 20px,
+    4px 20px,
+    4px 28px,
+    0px 28px
+  );;
+}
+
+.artnavbtns{
+  display: flex;
+  padding: 1rem;
+  margin: 2rem 3rem;
+}
+
+// --------------CREATE ARTICLES PAGE------------
+.bgshift{
+  color: $textcolor;
+  background: $bgcolor;
+}
+.createbox{
+  width: 80%;
+  height: 100vh;
+  padding: 1rem;
+  margin: 1rem 3rem; 
+  background-color: $textcolor;
+  color: $bgcolor;
+ 
+  
+  clip-path: polygon(
+    0px calc(100% - 28px),
+    4px calc(100% - 28px),
+    4px calc(100% - 20px),
+    8px calc(100% - 20px),
+    8px calc(100% - 12px),
+    12px calc(100% - 12px),
+    12px calc(100% - 8px),
+    20px calc(100% - 8px),
+    20px calc(100% - 4px),
+    28px calc(100% - 4px),
+    28px 100%,
+    calc(100% - 28px) 100%,
+    calc(100% - 28px) calc(100% - 4px),
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 20px) calc(100% - 8px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 8px) calc(100% - 20px),
+    calc(100% - 4px) calc(100% - 20px),
+    calc(100% - 4px) calc(100% - 28px),
+    100% calc(100% - 28px),
+    100% 28px,
+    calc(100% - 4px) 28px,
+    calc(100% - 4px) 20px,
+    calc(100% - 8px) 20px,
+    calc(100% - 8px) 12px,
+    calc(100% - 12px) 12px,
+    calc(100% - 12px) 8px,
+    calc(100% - 20px) 8px,
+    calc(100% - 20px) 4px,
+    calc(100% - 28px) 4px,
+    calc(100% - 28px) 0px,
+    28px 0px,
+    28px 4px,
+    20px 4px,
+    20px 8px,
+    12px 8px,
+    12px 12px,
+    8px 12px,
+    8px 20px,
+    4px 20px,
+    4px 28px,
+    0px 28px
+  );;
+}
+
+.title{
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  
+
+  padding: 2rem;
+  margin: 1rem 2rem;
+}
+label{
+  padding: 1rem 0rem;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: auto;
+
+
+  margin: 1rem 2rem;
+}
+
+.message{
+  
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 1rem 2rem;
+}
+.textarea{
+  height: 10rem;
+  
+}
+.input{
+  border: 1px solid black;
+  padding: .5rem .5rem;
+  width: auto;
+  height: auto;
+  
+  
+  
+}
+
+.icolor{
+  outline: none; // Remove the default focus outline
+  transition: border-color 0.3s ;
+  border-radius: .2rem;
+  
+
+  &:focus{
+    border-color: $linkcolor;
+    border-radius: .2rem;
+  }
+}
+
+
+//-------------Media Queries-----------
+
+@media only screen and (max-width: 480px) {
+  .landingbtn{
+    font-size: .5rem;
+    &:hover{
+      font-size: .5rem;
+
+    }
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .landingbtn{
+    font-size: .7rem;
+    &:hover{
+      font-size: .7rem;
+
+    }
+  }
+}
