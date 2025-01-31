@@ -21,7 +21,7 @@ const CreateArticle = () => {
 
     try {
       // Send data to the backend to save the article
-      const response = await fetch('http://localhost:5000/api/articles', {
+      const response = await fetch('https://one00wordthoughts.onrender.com/api/articles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
